@@ -15,6 +15,19 @@
 
     <main>
       <section>
+        <h2>Create a note</h2>
+        <form id="note-form">
+          <label for="title-input">Title (required, max 100 characters)</label>
+          <input type="text" id="title-input" name="title" />
+
+          <label for="body-input">Body (optional)</label>
+          <textarea id="body-input" name="body" rows="4"></textarea>
+
+          <button type="submit" id="submit-btn">Create note</button>
+        </form>
+      </section>
+
+      <section>
         <h2>Notes from the server</h2>
         <button id="load-btn">Load notes</button>
         <p id="status"></p>
