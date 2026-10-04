@@ -21,9 +21,9 @@ Note: JSONPlaceholder is a fake API, so notes you create or delete are not reall
 
 ## Design documents
 
-- [API design](docs/api-design.md)
-- [Data model](docs/data-model.md)
-- [Architecture](docs/architecture.md)
+- [API design](api-design.md)
+- [Data model](data-model.md)
+- [Architecture](architecture.md)
 
 ## What I learned
 
