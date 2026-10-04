@@ -1,0 +1,179 @@
+/* 1. Reset and base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #222;
+  line-height: 1.5;
+}
+
+/* 2. Header, main, sections, footer */
+header {
+  background-color: #34495e;
+  color: white;
+  text-align: center;
+  padding: 24px 16px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+header p {
+  margin: 4px 0 0;
+}
+
+main {
+  max-width: 700px;
+  margin: 24px auto;
+  padding: 0 16px;
+}
+
+section {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  color: #777;
+  padding: 16px;
+}
+
+/* 3. Form */
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+input,
+textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+}
+
+/* 4. Buttons */
+button {
+  background-color: #0ba184;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #088a70;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 5. Status messages: loading, success and error look different */
+#status {
+  margin: 12px 0;
+  min-height: 1.5em;
+}
+
+.loading {
+  color: #555;
+  background-color: #eef1f4;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.success {
+  color: #1b5e20;
+  background-color: #e8f5e9;
+  border-left: 4px solid #2e7d32;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+.error {
+  color: #b71c1c;
+  background-color: #ffebee;
+  border-left: 4px solid #c62828;
+  padding: 10px 14px;
+  border-radius: 6px;
+}
+
+/* 6. Notes list and cards */
+#notes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.note {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  background-color: #fffbe6;
+  border: 1px solid #ddd;
+  border-left: 5px solid #0ba184;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+}
+
+.note h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+
+.note p {
+  margin: 0;
+  color: #555;
+}
+
+.delete-btn {
+  background-color: #8e0000;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+  background-color: #6b0000;
+}
+
+.empty {
+  color: #666;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+/* 7. Phones */
+@media (max-width: 600px) {
+  header {
+    padding: 16px 8px;
+  }
+
+  .note {
+    flex-direction: column;
+  }
+}
