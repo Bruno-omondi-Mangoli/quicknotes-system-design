@@ -63,9 +63,15 @@ function renderNotes() {
     const body = document.createElement("p");
     body.textContent = note.body;
 
+    const del = document.createElement("button");
+    del.textContent = "Delete";
+    del.classList.add("delete-btn");
+    del.addEventListener("click", () => deleteNote(note, del));
+
     content.appendChild(title);
     content.appendChild(body);
     li.appendChild(content);
+    li.appendChild(del);
     list.appendChild(li);
   });
 }
@@ -134,7 +140,39 @@ async function createNote(title, body) {
   }
 }
 
-// ---------- 6. Listen for events ----------
+// ---------- 6. DELETE: remove a note ----------
+// JSONPlaceholder is a fake API: it never really stores the notes we create
+// (every new note comes back with id 101, which does not exist on the server).
+// So our approach is:
+//  - Notes loaded from the server (isNew is false): send DELETE /posts/{id}
+//    and remove the note from the page only after the server says OK.
+//  - Notes created in this session (isNew is true): the server never saved
+//    them, and a real API would answer 404 for id 101, so we remove them from
+//    the page without sending a request.
+// Each note has a unique "key", so deleting one note never removes another
+// note that happens to share the id 101.
+async function deleteNote(note, button) {
+  button.disabled = true;
+  setStatus("Deleting note...", "loading");
+
+  try {
+    if (!note.isNew) {
+      await request(`${API_URL}/${note.id}`, { method: "DELETE" });
+    }
+
+    notes = notes.filter((item) => item.key !== note.key);
+    renderNotes();
+    setStatus("Note deleted.", "success");
+  } catch (error) {
+    // On success the whole list is redrawn, so the button only needs
+    // to be enabled again when something went wrong.
+    button.disabled = false;
+    setStatus("Could not delete the note. Please try again.", "error");
+    console.error(error);
+  }
+}
+
+// ---------- 7. Listen for events ----------
 loadBtn.addEventListener("click", loadNotes);
 
 form.addEventListener("submit", (event) => {
@@ -155,5 +193,5 @@ form.addEventListener("submit", (event) => {
   createNote(title, body);
 });
 
-// ---------- 7. Draw once when the page opens ----------
+// ---------- 8. Draw once when the page opens ----------
 renderNotes();
